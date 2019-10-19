@@ -1,7 +1,7 @@
 # datawaiter
 Full and column-wise csv data and EDA serving made easy for fast prototyping.
 
-![Logo](./logo.svg)
+![Logo](./logo.svg =10x10)
 
 1. Install the package
 2. Launch the server with a prefetched _CSV_ file
