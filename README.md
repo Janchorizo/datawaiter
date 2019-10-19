@@ -1,7 +1,7 @@
 # datawaiter
 Full and column-wise csv data and EDA serving made easy for fast prototyping.
 
-![Logo](./logo.png)
+![Logo](./logo.svg)
 
 1. Install the package
 2. Launch the server with a prefetched _CSV_ file
@@ -60,6 +60,7 @@ app = server.create_app(
     )
 
 app.run()
+```
 
 ### 2. Upload your data
 Use command-line utilities
@@ -85,6 +86,18 @@ with open(csv_path, 'r') as file:
 Use the built in dashboard. Navigate to the `/` page and upload the dataset.
 
 ### 3. Retrieve the data
+
+## API
+
+| Method | Endpoint | Resource |
+|--------|----------|----------|
+| GET | /api/data/columns       | Retrieve a list with the available columns        |          
+| GET | /api/data/columns/{name}       | Retrieve a dictionary with each entry for the selected columns         |          
+| GET | /api/data/datasets       | Retrieve a list with the available datasets         |          
+| GET | /api/data/datasets/{name}       | Retrieve the whole contents of the selected dataset         |          
+| POST | /api/data/datasets/{name}       | Upload a csv file using the provided name         |          
+|        |          |          |
+|        |          |          |
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
