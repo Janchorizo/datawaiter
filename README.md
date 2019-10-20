@@ -89,6 +89,11 @@ Use the built in dashboard. Navigate to the `/` page and upload the dataset.
 
 ## API
 
+The API documentation is also available under the `/doc` path. Automatic documentation
+found there and created using the [`Swagger UI`](https://flask-restplus.readthedocs.io/en/stable/swagger.html#swaggerui) utility from [Flask-RESTPlus](https://flask-restplus.readthedocs.io/en/stable/) is
+prefered over the documentation available in this README.
+
+
 | Method | Endpoint | Resource |
 |--------|----------|----------|
 | GET | /api/data/columns       | Retrieve a list with the available columns        |          
