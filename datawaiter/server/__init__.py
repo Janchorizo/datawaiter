@@ -37,6 +37,7 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
 
     if not cache_folder.exists():
     	os.mkdir(cache_folder_path)
+    	os.mkdir(os.path.join(cache_folder_path, 'SESSION_NAME_IN_COOKIES'))
     elif not cache_folder.is_dir():
     	raise Exception(f'Wrong root folder. {cache_folder_path} is not a folder.')
 
@@ -45,6 +46,8 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
     app.config['initial_file'] = initial_file
     app.config['session_based'] = session_based
     app.config['persistent_data'] = persistent_data
+    app.config['raw_files_name'] = defaults.RAW_FILES_NAME + '.csv'
+    app.config['stat_files_name'] = defaults.STAT_FILES_NAME + '.csv'
     #app.config.from_object(config_by_name[env or "test"])
     api = Api(app, title="Flaskerific API", version="0.1.0")
 
