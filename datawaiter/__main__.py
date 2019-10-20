@@ -1,7 +1,8 @@
 import sys
 import click 
 
-from . import defaults
+from .server import defaults
+from .server import create_app
 
 @click.command()
 @click.option(
@@ -39,7 +40,6 @@ from . import defaults
     help=f'The port to which to bind the server. Defaults to {defaults.PORT}.'
 )
 def main(root_folder, initial_file, session_based, persistent_data, port):
-	from .server import create_app
 	app = create_app(root_folder, initial_file, session_based, persistent_data)
 	app.run(port=port)
 
