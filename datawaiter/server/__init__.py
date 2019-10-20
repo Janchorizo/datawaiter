@@ -49,7 +49,7 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
     app.config['raw_files_name'] = defaults.RAW_FILES_NAME + '.csv'
     app.config['stat_files_name'] = defaults.STAT_FILES_NAME + '.csv'
     #app.config.from_object(config_by_name[env or "test"])
-    api = Api(app, title="Flaskerific API", version="0.1.0")
+    api = Api(app, title="Flaskerific API", version="0.1.0", doc='/doc/')
 
     register_data_routes(api, app)
 
