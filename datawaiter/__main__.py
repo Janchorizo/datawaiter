@@ -39,9 +39,15 @@ from .server import create_app
     default=defaults.PORT,
     help=f'The port to which to bind the server. Defaults to {defaults.PORT}.'
 )
-def main(root_folder, initial_file, session_based, persistent_data, port):
-	app = create_app(root_folder, initial_file, session_based, persistent_data)
-	app.run(port=port)
+@click.option(
+    '--debug/--no-debug',
+    '-d/-nd',
+    default=False,
+    help=f'Start server in debug mode.'
+)
+def main(root_folder, initial_file, session_based, persistent_data, port, debug):
+	app = create_app(root_folder, initial_file, session_based, persistent_data, port)
+	app.run(port=port, debug=debug)
 
 if __name__ == '__main__':
 	main()
