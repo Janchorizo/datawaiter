@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Datawaiter</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<a href="https://github.com/Janchorizo/datawaiter" target="blank">
+		<img width="149" height="149" 
+			src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" 
+			class="attachment-full size-full right" alt="Fork me on GitHub" data-recalc-dims="1">
+	</a>
+
+	<nav class="cyan darken-3">
+	    <div class="nav">
+	    	<div class="container">
+			    <a href="#!" class="brand-logo center">Data Waiter</a>
+			    <ul class="right">
+			        <li><a href="/doc" target="blank">See the API documentation</a></li>
+			    </ul>
+	    	</div>
+	    </div>
+	</nav>
+	        
+	<div class="row cyan lighten-5">
+	    <div class="container">
+	    	<table>
+		        <thead>
+		          <tr>
+		              <th>Current port</th>
+		              <th>Using sessions</th>
+		              <th>Persistent data</th>
+		              <th>Current user</th>
+		              <th>Server version</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr>
+		            <td>{{ args.port }}</td>
+		            <td>{{ args.using_sessions }}</td>
+		            <td>{{ args.persistent_data }}</td>
+		            <td>{{ args.user }}</td>
+		            <td>0.1</td>
+		          </tr>
+		        </tbody>
+		      </table>
+	    </div>
+	</div>
+
+	<!-- Compiled and minified JavaScript -->
+	<div class="container">
+	    <div class="row">
+	      <div class="col s8">
+				<ul class="collection with-header">
+			        <li class="collection-header"><h4>Available datasets <span class="new badge" data-badge-caption="Datasets">{{ args.num_datasets }}</span></h4></li>
+			        {% if args.datasets %}
+						{% for dataset in args.datasets %}
+				        <li class="collection-item"><div>{{ dataset }}<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+				        {% endfor %}
+				    {% else %}
+				    	<li class="collection-item"><div>No dataset available</div></li>
+				    {% endif %}
+		      	</ul>
+	      </div>
+	      <div class="col s4">
+		      <div class="card">
+		        <div class="card-content">
+		          <span class="card-title">Upload a dataset</span>
+		          <p>Add a new dataset to the collection. Beware</p>
+		        </div>
+		        <div class="card-action">
+				  	<form action={{ args.upload_url }} method=post enctype=multipart/form-data>
+				  		<div class="row">
+					  		<div class="input-field col s12">
+				          		<input id="name" type="text" class="validate">
+				          		<label for="name">Dataset name (optional)</label>
+				        	</div>
+				  		</div>
+				  		<div class="row">
+					    	<div class="file-field input-field col s12">
+						      	<div class="btn">
+						        	<span>File</span>
+						        	<input type="file" name="file">
+						      	</div>
+						      	<div class="file-path-wrapper">
+						        	<input class="file-path validate" type="text">
+						      	</div>
+				  			</div>
+				  		</div>
+				  		<div class="row">
+				  			<div class="col s12">
+							    <button class="btn waves-effect waves-light" type="submit" name="action">Upload
+								    <i class="material-icons right">send</i>
+								</button>
+				  			</div>
+				  		</div>
+				    </div>
+				  </form>
+		        </div>
+		      </div>
+	      </div>
+	    </div>
+	</div>
+	          
+	 <div class="container">
+	    <div class="section">
+
+
+
+	      <!--   Icon Section   -->
+	      <div class="row">
+	        <div class="col s12 m4">
+	          <div class="icon-block">
+	            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+	            <h5 class="center">Speeds up development</h5>
+
+	            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+	          </div>
+	        </div>
+
+	        <div class="col s12 m4">
+	          <div class="icon-block">
+	            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+	            <h5 class="center">User Experience Focused</h5>
+
+	            <p class="light">Easily share data files with other users and allow them to share other files
+	            	among them, or use their own session to upload, process, and consume the data.</p>
+	          </div>
+	        </div>
+
+	        <div class="col s12 m4">
+	          <div class="icon-block">
+	            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+	            <h5 class="center">Easy to work with</h5>
+
+	            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+	          </div>
+	        </div>
+	      </div>
+
+	    </div>
+	    <br><br>
+	  </div>
+
+	<footer class="page-footer cyan darken-1">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="black-text">Footer Content</h5>
+            <p class="grey-text text-darken-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="black-text">Projects using Datawaiter</h5>
+            <ul>
+              <li><a class="grey-text text-darken-4" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-darken-4" href="#!">Link 2</a></li>
+              <li><a class="grey-text text-darken-4" href="#!">Link 3</a></li>
+              <li><a class="grey-text text-darken-4" href="#!">Link 4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright cyan darken-3">
+        <div class="container black-text center">
+        © 2014 Copyright Text
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

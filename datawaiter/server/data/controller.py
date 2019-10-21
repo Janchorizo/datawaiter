@@ -25,19 +25,7 @@ class DatasetList(Resource):
                 if not app.config['session_based'] \
                 else os.path.join(app.config['data_folder'], 'SESSION_NAME_IN_COOKIES')
 
-        return Response(f'''
-            <html>
-            <body>
-            <title>Upload new File</title>
-            <h1>Upload new File</h1>
-            <h3>{os.listdir(root_folder)}</h3>
-            <form method=post enctype=multipart/form-data>
-              <input type=file name=file>
-              <input type=submit value=Upload>
-            </form>
-            </body>
-            </html>
-            ''', mimetype='text/html')
+        return jsonify(os.listdir(root_folder))
 
     def post(self):
         """
@@ -70,7 +58,7 @@ class DatasetList(Resource):
             file.save(os.path.join(file_folder_path, app.config['raw_files_name']))
             file.save(os.path.join(file_folder_path, app.config['stat_files_name']))
 
-            return jsonify({'success': True})
+            return flask.redirect("/home")
 
 
 @api.route("/dataset/<string:name>")

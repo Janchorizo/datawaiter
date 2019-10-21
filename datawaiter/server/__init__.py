@@ -28,9 +28,11 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
 		initial_file=None, 
 		session_based=defaults.USE_SESSIONS, 
 		persistent_data=defaults.PERSISTENT_DATA, 
+		port=defaults.PORT,
 		env=None):
 
     from .data import register_routes as register_data_routes
+    from .home import register_routes as register_home_routes
 
     cache_folder_path:str = os.path.join(root_folder, defaults.DATA_FOLDER)
     cache_folder:Path = Path(cache_folder_path)
@@ -42,6 +44,7 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
     	raise Exception(f'Wrong root folder. {cache_folder_path} is not a folder.')
 
     app = Flask(__name__)
+    app.config['port'] = port
     app.config['data_folder'] = cache_folder_path
     app.config['initial_file'] = initial_file
     app.config['session_based'] = session_based
@@ -52,6 +55,7 @@ def create_app(root_folder=defaults.ROOT_FOLDER,
     api = Api(app, title="Flaskerific API", version="0.1.0", doc='/doc/')
 
     register_data_routes(api, app)
+    register_home_routes(api, app)
 
     @app.route("/health")
     def health():
