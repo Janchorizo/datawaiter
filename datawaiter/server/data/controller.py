@@ -3,6 +3,9 @@ import flask
 from flask import Flask, request, jsonify, render_template_string, Response
 from flask_restplus import Api, Resource, Namespace
 from werkzeug.utils import secure_filename
+from pathlib import Path
+import pandas as pd
+import json
 
 from .csv_process import CSV
 
@@ -75,7 +78,27 @@ class Dataset(Resource):
         returns a JSON formated version of the selected dataset
         """    
 
-        return jsonify("healthy")
+        app = flask.current_app
+
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if csv_name == '':
+            print('No selected file')
+            return redirect(request.url)
+
+        file_folder = secure_filename(csv_name)
+        root_folder = app.config['data_folder'] \
+            if not app.config['session_based'] \
+            else os.path.join(app.config['data_folder'], 'SESSION_NAME_IN_COOKIES')
+
+        file_folder_path = os.path.join(root_folder,file_folder)
+        
+        if Path(file_folder_path).exists() and Path(file_folder_path).is_dir():
+            csv_filepath = os.path.join(file_folder_path, app.config['raw_files_name'])
+            print(csv_filepath)
+            df  = pd.read_csv(csv_filepath)
+
+            return json.loads(df.to_json(orient='records'))
 
     def post(self, csv_name):
         """
